@@ -1,5 +1,6 @@
 package com.umy.activity4
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -59,57 +60,50 @@ fun LatihanInput(modifier: Modifier = Modifier) {
                 .padding(5.dp)
 
         )
-        datagender.forEach { selectedGender ->
-            Row (modifier = Modifier.fillMaxWidth()){
-                datagender.forEach{ selectedGender ->
-                Row (verticalAlignment = Alignment.CenterVertically){
+        Row (
+            modifier = Modifier.fillMaxWidth()) {       //mengganti variabel modifier dengan Modifier
+            datagender.forEach{ selectedGender ->
+                Row (verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(
                         selected = gender == selectedGender,
-                        onClick = {gender = selectedGender}
-                    )
-                    Text(text = selectedGender)
+                        onClick = {
+                            gender = selectedGender
+                        })
                 }
-            }}
-            TextField(
-                value = email,
-                onValueChange = { email = it },
-                label = {
-                    Text("Email")
-                },
-                placeholder = {
-                    Text("Isi Email Anda")
-                },
-                modifier = modifier.fillMaxWidth()
+                Text(text = selectedGender) }
+        }
+        TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            placeholder = { Text("Isi Email Anda") },
+                modifier = Modifier     //mengganti variabel modifier dengan Modifier
+                    .fillMaxWidth()
                     .padding(5.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-            TextField(
-                value = alamat,
-                onValueChange = { alamat = it },
-                label = {
-                    Text("Alamat")
-                },
-                placeholder = {
-                    Text("Isi Alamat Anda")
-                },
-                modifier = modifier.fillMaxWidth()
+        TextField(
+            value = alamat,
+            onValueChange = { alamat = it },
+            label = { Text("Alamat") },
+            placeholder = { Text("Isi Alamat Anda") },
+                modifier = Modifier     //mengganti variabel modifier dengan Modifier
+                    .fillMaxWidth()
                     .padding(5.dp)
-            )
-            TextField(
-                modifier = modifier.fillMaxWidth()
-                    .padding(5.dp),
-                value = notelpon,
-                onValueChange = { notelpon = it },
-                label = {
-                    Text("Nomor Telepon")
-                },
-                placeholder = {
-                    Text("Isi Nomor Telepon Anda")
-                },
+        )
+        TextField(
+            value = notelpon,
+            onValueChange = { notelpon = it },
+            label = { Text("Nomor Telepon") },
+            placeholder = { Text("Isi Nomor Telepon Anda") },
+            modifier = Modifier     //mengganti variabel modifier dengan Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
 
-            )
-            Button(onClick = {
+        )
+        Button(
+            onClick = {
                 confname = nama
                 confemail = email
                 confalamat = alamat
@@ -125,7 +119,6 @@ fun LatihanInput(modifier: Modifier = Modifier) {
             TampilData(param = "gender", argu = confgender)
         }
     }
-}
 
 @Composable
 fun TampilData(param: String, argu: String) {
@@ -134,7 +127,7 @@ fun TampilData(param: String, argu: String) {
     ) {
         Row (
             modifier = Modifier.fillMaxWidth(),
-//            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = param,
                 modifier = Modifier.weight(0.8f))
